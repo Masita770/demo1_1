@@ -22,7 +22,7 @@
 					<label class="control-label">年齢</label>
 					<p class="form-control" th:text="*{age}"></p>
 				</div>
-					<a class="btn btn-outline-success btn-sm" th:href="@{/demoInfo/user/id={id}/user(id=*{id})}">編集</a>
+					<a class="btn btn-outline-success btn-sm" th:href="@{{id}/user(id=*{id})}">編集</a>
 				<div id ="righttext">
 					<a class="btn btn-link" id="linktext" href="list">一覧画面</a>
 				</div>
