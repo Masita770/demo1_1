@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>update</title>
+		<link href="/css/list.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/boostrap/4.3.1/css/bootstrap.min.css">
+	</head>
+	<body>
+		<script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+		<script th:href="@{/webjars/bootstrap/4.4.1-1/js/boostrap.min.js}"></script>
+		<div class="container">
+			<h1>update form</h1>
+			<form th:action="@{/demoInfo/demoInfo/{id}(id=*{id})}" th:object="${demoInfo}" th:method="post">
+				<div class="form-row mb-4">
+					<label class="control-label">名前</label>
+					<input class="form-control" id="firstName" type="text" th:field="*{name}" />
+				</div>
+				<div class="form-row mb-4">
+					<label class="control-label">年齢</label>
+					<input class="form-control" type="number" th:field="*{age}" />
+				</div>
+				<button class="btn btn-outline-info btn-sm" type="submit">更新</button>
+			</form>
+			<div id="righttext">
+				<a class="btn btn-link" id="linktext" href="list">一覧画面</a>
+			</div>
+		</div>
+	</body>
+</html>

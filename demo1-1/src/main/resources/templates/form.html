@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+  <body>
+  	<h2>登録画面</h2>
+  	<div class="container">
+  		<form th:action="@{/form}" th:method="form" th:object="${newUser}">
+  		<div class="mb-3">
+  		
+  		<label for="exampleFormControlInput1" class="form-label">名前</label>
+  		<input class="form-control" type="text" name="name" />
+  
+          <label class="control-label">年齢</label>
+          <input class="form-control" type="text" name="age" />
+        </div>
+  
+	
+		
+  		<button class="btn btn-outline-primary btn-sm" type="submit">作成</button>
+  	</form>
+  		<input type="button" onclick"location.href='list.html'" value="登録">
+  	</div>
+  	<div id="righttext">
+  		<a class="btn btn-link" id ="linktext" href="list">一覧画面</a>
+  </div>
+  </body>
+</html>
