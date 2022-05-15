@@ -24,11 +24,13 @@
     <tr th:each="users : ${list}">
       
       <th th:text="${users.id}"></th>
-      <td　th:text="${users.name}"></td>
-      <td th:text="${users.age}"></td>
+      <th th:text="${users.name}"></th>
+      <th th:text="${users.age}"></th>
+      <td><a class="btn btn-outline-primary btn-sm" th:href="@{/user/{id}(id=*{id})}">参照</a></td>
     </tr>
     
   </tbody>
+  	<td><a class="btn btn-outline-success btn-sm" th:href="@{/user/{id}(id=*{id})}">参照</a></td>
 </table>
     <!-- Optional JavaScript; choose one of the two! -->
 

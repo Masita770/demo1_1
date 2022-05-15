@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8" />
@@ -9,7 +9,7 @@
 	<body>
 		<div class="container">
 			<h1>user home</h1>
-			<div th:object="${demoInfo}">
+			<div th:object="${userSelect}">
 				<div class="form-row">
 					<label class="control-label">ID</label>
 					<p class="form-control" th:text="*{id}"></p>
@@ -22,10 +22,11 @@
 					<label class="control-label">年齢</label>
 					<p class="form-control" th:text="*{age}"></p>
 				</div>
-					<a class="btn btn-outline-success btn-sm" th:href="@{{id}/user(id=*{id})}">編集</a>
+					<a class="btn btn-outline-success btn-sm" th:href="@{/update/{id}(id=*{id})}">編集</a>
 				<div id ="righttext">
 					<a class="btn btn-link" id="linktext" href="list">一覧画面</a>
 				</div>
 			</div>
-		</body>
-	</html>
+		</div>
+	</body>
+</html>

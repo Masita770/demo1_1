@@ -61,13 +61,13 @@ public class DemoController {
 	return "redirect:/list";
 	}
 	
-	//個別編集機能 5/8編集途中
+	//個別編集機能 5/12 dende-hの書き方を試す。
 	@GetMapping("{id}")
 	//public String edit() {
-	public String updateSelect(@PathVariable("id")String id, Model model) {
-		DemoInfo demoUpdate= service.updateSelect(id);
+	public String userSelect(@PathVariable String id, Model model) {
+		DemoInfo demoInfo= service.updateSelect(id);
 		//demoUpdate.get();
-		model.addAttribute("demoUpdate", demoUpdate);
+		model.addAttribute("list", demoInfo);
 		return "/user";
 	}
 //	@RequestMapping("/update")
@@ -77,10 +77,14 @@ public class DemoController {
 //	}
 	//編集機能 5/3編集を再開
 	@PostMapping("/update")
-	public String userUpdate(@PathVariable String id, @ModelAttribute DemoInfo demoInfo) {
-		service.update(demoInfo);
+	public String userUpdate(@ModelAttribute DemoInfo demoInfo, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+		List<DemoInfo> users = service.getDemoList();
+		model.addAttribute("list", users);
 		//service.create(demoInfo);
-		return "redirect:/list";
+		return "redirect:/update";
 		}
-	//}
+	service.update(demoInfo);
+	return "/list";
+	}
 }
