@@ -29,7 +29,7 @@ public interface DemoMapper {
 	 **編集用情報選択
 	 * @return 
 	 */
-	DemoInfo updateSelect(String id);
+	DemoInfo getUpdate(String id);
 	/**
 	 * 仮新ユーザー情報登録
 	 * @param cari

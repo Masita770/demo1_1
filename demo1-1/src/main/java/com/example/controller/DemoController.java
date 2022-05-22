@@ -52,8 +52,8 @@ public class DemoController {
 	public String add(@ModelAttribute DemoInfo demoInfo, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 		List<DemoInfo> users = service.getDemoList();
-		model.addAttribute("list", users);
-		model.addAttribute("demoInfo", demoInfo);
+		model.addAttribute("demoInfo", users);
+//		model.addAttribute("demoInfo", demoInfo);
 		return "/list";
 		}
 	
@@ -61,13 +61,21 @@ public class DemoController {
 	return "redirect:/list";
 	}
 	
-	//個別編集機能 5/12 dende-hの書き方を試す。
+	//ユーザー個別編集画面
+//	@GetMapping("{id}")
+//	public String edit(@PathVariable String id, Model model) {
+//		DemoInfo user = service.updateSelect(id);
+//		model.addAttribute("demoInfo", user);
+//		return "/update";
+//	}
+	
+	//個別編集画面 5/12 dende-hの書き方を試す。
 	@GetMapping("{id}")
 	//public String edit() {
 	public String userSelect(@PathVariable String id, Model model) {
-		DemoInfo demoInfo= service.updateSelect(id);
+		DemoInfo user= service.updateSelect(id);
 		//demoUpdate.get();
-		model.addAttribute("list", demoInfo);
+		model.addAttribute("demoInfo", user);
 		return "/user";
 	}
 //	@RequestMapping("/update")
@@ -76,15 +84,14 @@ public class DemoController {
 //		model.addAttribute("demoUpdate", demoInfo);
 //	}
 	//編集機能 5/3編集を再開
-	@PostMapping("/update")
-	public String userUpdate(@ModelAttribute DemoInfo demoInfo, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
-		List<DemoInfo> users = service.getDemoList();
-		model.addAttribute("list", users);
+	@PostMapping("{id}")
+	public String userUpdate(@PathVariable String id, @ModelAttribute DemoInfo demoInfo, BindingResult bindingResult, Model model) {
+		service.updateSelect(id);
+		model.addAttribute("demoInfo", demoInfo);
 		//service.create(demoInfo);
 		return "redirect:/update";
 		}
-	service.update(demoInfo);
-	return "/list";
-	}
+//	service.update(demoInfo);
+//	return "/list";
+//	}
 }

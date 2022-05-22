@@ -9,20 +9,20 @@
 	<body>
 		<div class="container">
 			<h1>user home</h1>
-			<div th:object="${userSelect}">
+			<div th:object="${demoInfo}">
 				<div class="form-row">
 					<label class="control-label">ID</label>
-					<p class="form-control" th:text="*{id}"></p>
+					<p class="form-control" th:text="${id}"></p>
 				</div>
 				<div class="form-row">
 					<label class="control-label">名前</label>
-					<p class="form-control" th:text="*{name}"></p>
+					<p class="form-control" th:text="${name}"></p>
 				</div>
 				<div class="form-row">
 					<label class="control-label">年齢</label>
-					<p class="form-control" th:text="*{age}"></p>
+					<p class="form-control" th:text="${age}"></p>
 				</div>
-					<a class="btn btn-outline-success btn-sm" th:href="@{/update/{id}(id=*{id})}">編集</a>
+					<a class="btn btn-outline-success btn-sm" th:href="id">編集</a>
 				<div id ="righttext">
 					<a class="btn btn-link" id="linktext" href="list">一覧画面</a>
 				</div>

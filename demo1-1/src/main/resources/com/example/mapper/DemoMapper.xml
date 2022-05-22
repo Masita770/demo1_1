@@ -6,7 +6,7 @@
 	<select id="selectAll" resultType="com.example.domain.DemoInfo">
 		SELECT * FROM users ORDER BY id DESC
 	</select>
-	<select id="updateSelect" resultType="com.example.domain.DemoInfo">
+	<select id="getUpdate" resultType="com.example.domain.DemoInfo">
 		SELECT * FROM users WHERE id =#{id}
 	</select>
 	<insert id="add" useGeneratedKeys="true" keyProperty="id"> 

@@ -15,17 +15,17 @@
 	<table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">名前</th>
-      <th scope="col">年齢</th>
+      <th id="id">ID</th>
+      <th id="name">名前</th>
+      <th id="age">年齢</th>
     </tr>
   </thead>
   <tbody>
     <tr th:each="users : ${list}">
       
-      <th th:text="${users.id}"></th>
-      <th th:text="${users.name}"></th>
-      <th th:text="${users.age}"></th>
+      <th th:text="*{users.id}"></th>
+      <th th:text="*{users.name}"></th>
+      <th th:text="*{users.age}"></th>
       <td><a class="btn btn-outline-primary btn-sm" th:href="@{/user/{id}(id=*{id})}">参照</a></td>
     </tr>
     
