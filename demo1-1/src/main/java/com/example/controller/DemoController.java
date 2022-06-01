@@ -29,7 +29,7 @@ public class DemoController {
 	@Autowired
 	DemoService service;
 
-	@RequestMapping("/list")
+	@RequestMapping("list")
 	public String list(Model model) {
 		List<DemoInfo> users = service.getDemoList();
 		//List<DemoInfo> users = new ArrayList<DemoInfo>();
@@ -41,7 +41,7 @@ public class DemoController {
 		
 		model.addAttribute("list", users);
 		model.addAttribute("demoInfo", new DemoInfo());
-		return "/list";
+		return "list";
 	}
 	@GetMapping("form")
 	String newUser(@RequestBody(required = false) Model model) {
@@ -62,21 +62,21 @@ public class DemoController {
 	}
 	
 	//ユーザー個別編集画面
-//	@GetMapping("{id}")
-//	public String edit(@PathVariable String id, Model model) {
-//		DemoInfo user = service.updateSelect(id);
-//		model.addAttribute("demoInfo", user);
-//		return "/update";
-//	}
+	@GetMapping("{id}/update")
+	public String edit(@PathVariable String id, Model model) {
+		DemoInfo demoInfo = service.updateSelect(id);
+		model.addAttribute("demoInfo", demoInfo);
+		return "/update";
+	}
 	
 	//個別編集画面 5/12 dende-hの書き方を試す。
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	//public String edit() {
 	public String userSelect(@PathVariable String id, Model model) {
-		DemoInfo user= service.updateSelect(id);
+		DemoInfo demoInfo= service.updateSelect(id);
 		//demoUpdate.get();
-		model.addAttribute("demoInfo", user);
-		return "/user";
+		model.addAttribute("demoInfo", demoInfo);
+		return "user";
 	}
 //	@RequestMapping("/update")
 //	public String serch(@ModelAttribute DemoInfo demoInfo, Model model) {

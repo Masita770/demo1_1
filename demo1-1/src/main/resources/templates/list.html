@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -10,6 +10,7 @@
 
     <title>Hello, world!</title>
   </head>
+  </link>
   <body>
     <h1>Hello, world!</h1>
 	<table class="table">
@@ -26,11 +27,11 @@
       <th th:text="*{users.id}"></th>
       <th th:text="*{users.name}"></th>
       <th th:text="*{users.age}"></th>
-      <td><a class="btn btn-outline-primary btn-sm" th:href="@{/user/{id}(id=*{id})}">参照</a></td>
+      <td><a class="btn btn-outline-primary btn-sm" th:href="@{{id}/person(id=*{id})}">参照</a></td>
     </tr>
     
   </tbody>
-  	<td><a class="btn btn-outline-success btn-sm" th:href="@{/user/{id}(id=*{id})}">参照</a></td>
+  	<td><a class="btn btn-outline-success btn-sm" th:href="@{/person/{id}/update(id=*{id})}">参照</a></td>
 </table>
     <!-- Optional JavaScript; choose one of the two! -->
 
