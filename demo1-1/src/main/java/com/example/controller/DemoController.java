@@ -23,6 +23,7 @@ import com.example.service.DemoService;
 
 
 @Controller
+@RequestMapping("/")
 //@RestController
 public class DemoController {
 	
@@ -70,7 +71,7 @@ public class DemoController {
 	}
 	
 	//個別編集画面 5/12 dende-hの書き方を試す。
-	@GetMapping("/{id}")
+	@GetMapping("{id}")
 	//public String edit() {
 	public String userSelect(@PathVariable String id, Model model) {
 		DemoInfo demoInfo= service.updateSelect(id);
