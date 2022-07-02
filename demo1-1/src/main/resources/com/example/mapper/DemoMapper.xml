@@ -6,8 +6,8 @@
 	<select id="selectAll" resultType="com.example.domain.DemoInfo">
 		SELECT * FROM users ORDER BY id DESC
 	</select>
-	<select id="getUpdate" resultType="com.example.domain.DemoInfo">
-		SELECT * FROM users WHERE id =#{id}
+	<select id="selectOne" resultType="com.example.domain.DemoInfo">
+		SELECT * FROM users WHERE id = #{id}
 	</select>
 	<insert id="add" useGeneratedKeys="true" keyProperty="id"> 
 		INSERT into users (id,name,age) values (#{id},#{name},#{age})

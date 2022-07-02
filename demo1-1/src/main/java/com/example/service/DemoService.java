@@ -25,8 +25,8 @@ public class DemoService {
 	}
 	//*仮作成
 	
-	public DemoInfo updateSelect(String id) {
-		return mapper.getUpdate(id);
+	public DemoInfo selectOne(String id) {
+		return mapper.selectOne(id);
 	}
 	/*
 	 * 編集機能
