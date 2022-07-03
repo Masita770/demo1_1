@@ -65,13 +65,12 @@ public class DemoController {
 //		return "crud/update";
 //	}
 	
-	//@RequestMapping(value="/user/{id}", method=RequestMethod.GET)
+	//1 エラー発生箇所
 	@GetMapping("{id}")
-	public String user(@PathVariable("id")String id, DemoInfo demoInfo, Model model) {
-		//if (id == null) {
+	public String user(@PathVariable(required = false)String id, DemoInfo demoInfo, Model model) {
 		DemoInfo userInfo= service.selectOne(id);
+		System.out.println(1);
 		model.addAttribute("userInfo", userInfo);
-		//}
 		return "crud/user";
 	}
 //	@RequestMapping("/update")
