@@ -69,7 +69,6 @@ public class DemoController {
 	@GetMapping("{id}")
 	public String user(@PathVariable(required = false)String id, DemoInfo demoInfo, Model model) {
 		DemoInfo userInfo= service.selectOne(id);
-		System.out.println(1);
 		model.addAttribute("userInfo", userInfo);
 		return "crud/user";
 	}
