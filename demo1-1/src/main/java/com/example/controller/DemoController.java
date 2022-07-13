@@ -48,7 +48,7 @@ public class DemoController {
 	public String add(@ModelAttribute DemoInfo demoInfo, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 		List<DemoInfo> users = service.getDemoList();
-		model.addAttribute("demoInfo", users);
+		//model.addAttribute("demoInfo", users);
 //		model.addAttribute("demoInfo", demoInfo);
 		return "crud/list";
 		}
@@ -66,8 +66,8 @@ public class DemoController {
 //	}
 	
 	//1 エラー発生箇所
-	@GetMapping("{id}")
-	public String user(@PathVariable(required = false)String id, DemoInfo demoInfo, Model model) {
+	@RequestMapping("{id}")
+	public String select(@PathVariable("id") String id, Model model) {
 		DemoInfo userInfo= service.selectOne(id);
 		model.addAttribute("userInfo", userInfo);
 		return "crud/user";
