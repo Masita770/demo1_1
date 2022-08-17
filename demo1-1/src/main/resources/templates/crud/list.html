@@ -22,12 +22,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr th:each="users : ${list}">
+    <tr th:each="users : ${userlist}">
       
       <th th:text="*{users.id}"></th>
       <th th:text="*{users.name}"></th>
       <th th:text="*{users.age}"></th>
-      <td><a class="btn btn-outline-primary btn-sm" th:href=@{user/{id}(id=${demoInfo.id})}>参照</a></td>
+      <td><a class="btn btn-outline-primary btn-sm" th:href="@{user(id=${users.id})}">参照</a></td>
     </tr>
     
   </tbody>

@@ -1,18 +1,22 @@
 package com.example.domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 public class DemoInfo {
 	
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String name;
 	private String age;
 	
-//	public void DemoInfo(Integer id, String name, Integer age) {
-//		this.id = id;
-//		this.name = name;
-//		this.age = age;
-//	}
 	
-	
+	public DemoInfo(String id, String name, String age) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
+
 
 	/**
 	 * IDを取得する

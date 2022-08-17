@@ -27,7 +27,13 @@ public interface DemoMapper {
 	/**
 	 **編集用情報選択
 	 */
-	DemoInfo selectOne(String id);
+	Optional<DemoInfo> selectOne(String id);
+	//void ifPresentOrElse(Object demoInfo);
+
+
+	Object DemoInfo();
+
+
 	/**
 	 * 仮新ユーザー情報登録
 	 */
@@ -37,6 +43,6 @@ public interface DemoMapper {
 
 
 	
-	void update(DemoInfo update);
+	Void update(DemoInfo update);
 
 }

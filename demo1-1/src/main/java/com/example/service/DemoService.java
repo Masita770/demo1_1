@@ -25,9 +25,12 @@ public class DemoService {
 	}
 	//*仮作成
 	
-	public DemoInfo selectOne(String id) {
-		return mapper.selectOne(id);
-	}
+	public Optional<DemoInfo> selectOne(String id) {
+		Optional<Optional<DemoInfo>> st = Optional.ofNullable(mapper.selectOne(id));
+		//DemoInfo result = st.orElse(new DemoInfo(id));
+		return st.get();
+		}
+	
 	/*
 	 * 編集機能
 	 */

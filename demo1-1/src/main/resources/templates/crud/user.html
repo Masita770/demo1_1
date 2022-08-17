@@ -9,10 +9,10 @@
 	<body>
 		<div class="container">
 			<h1>UserHome</h1>
-			<div th:each="userInfo : ${userInfo}">
+			<div th:each="userInfo:${userInfo}">
 				<div class="form-row">
-					<label class="control-label">ID</label>
-					<th th:text=${userInfo.id}></th>
+					<label class="control-label">ID: </label>
+					<p class="form-control" th:text="${userInfo.id}"></p>
 				</div>
 				<div class="form-row">
 					<label class="control-label">名前</label>
@@ -22,7 +22,7 @@
 					<label class="control-label">年齢</label>
 					<p class="form-control" th:text="${userInfo.age}"></p>
 				</div>
-					<a class="btn btn-outline-success btn-sm" th:href="@{{id}/update(id=${id})}">編集</a>
+					<a class="btn btn-outline-success btn-sm" th:href='@{update(id=*{id})}'>編集</a>
 				<div id ="righttext">
 					<a class="btn btn-link" id="linktext" href="list">一覧画面</a>
 				</div>

@@ -11,14 +11,14 @@
 		<script th:href="@{/webjars/bootstrap/4.4.1-1/js/boostrap.min.js}"></script>
 		<div class="container">
 			<h1>update form</h1>
-			<form th:action="@{/update/{id}(id=*{id})}" th:object="${demoInfo}" th:method="post">
+			<form th:action="@{update(id=${demoInfo.id})}" th:each="demoInfo : ${demoInfo}" th:method="put">
 				<div class="form-row mb-4">
 					<label class="control-label">名前</label>
-					
+					<input class="form-control" id="firstName" type="text" th:field="${demoInfo.name}">
 				</div>
 				<div class="form-row mb-4">
 					<label class="control-label">年齢</label>
-					<input class="form-control" type="number" th:field="*{age}" />
+					<input class="form-control" type="number" th:field="${demoInfo.age}" />
 				</div>
 				<button class="btn btn-outline-info btn-sm" type="submit">更新</button>
 			</form>
