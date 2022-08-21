@@ -12,22 +12,22 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import com.example.domain.DemoInfo;
+import com.example.domain.User;
 
 @Mapper
-public interface DemoMapper {
+public interface UserMapper {
 	
 
 	/**
 	 * DemoInfo一覧を検索する
 	 */
-	List<DemoInfo> selectAll();
+	List<User> selectAll();
 	
 	
 	/**
 	 **編集用情報選択
 	 */
-	Optional<DemoInfo> selectOne(String id);
+	Optional<User> selectOne(String id);
 	//void ifPresentOrElse(Object demoInfo);
 
 
@@ -39,10 +39,10 @@ public interface DemoMapper {
 	 */
 	
 	
-	public void add(DemoInfo demoInfo);
+	public void add(User user);
 
 
 	
-	Void update(DemoInfo update);
+	Void update(User update);
 
 }

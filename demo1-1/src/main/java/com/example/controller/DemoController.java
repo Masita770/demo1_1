@@ -1,12 +1,16 @@
 package com.example.controller;
 
-import com.example.domain.DemoInfo;
+import com.example.domain.User;
 import com.example.service.DemoService;
 
 import java.util.Optional;
 import java.util.List;
 
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,7 +34,7 @@ public class DemoController {
 
 	@RequestMapping("list")
 	public String list(Model model) {
-		List<DemoInfo> users = service.getDemoList();
+		List<User> users = service.getDemoList();
 		model.addAttribute("userlist", users);
 		//model.addAttribute("demoInfo", new DemoInfo());
 		return "crud/list";
@@ -41,14 +45,14 @@ public class DemoController {
 	}
 	//新規登録依頼の受け取り
 	@RequestMapping("form")
-	public String add(@ModelAttribute DemoInfo demoInfo, BindingResult bindingResult, Model model) {
+	public String add(@ModelAttribute User user, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 //		List<DemoInfo> users = service.getDemoList();
 //		model.addAttribute("demoInfo", users);
 //		model.addAttribute("demoInfo", demoInfo);
 		return "crud/success";
 		}
-	service.create(demoInfo);
+	service.create(user);
 	return "redirect:crud/list";
 	}
 	
@@ -65,10 +69,15 @@ public class DemoController {
 	public String select(@RequestParam(value = "id", required = true)String id, Model model) {
 		//if (result.hasErrors()) {
 		//String errorInfo = null;
-			Optional<DemoInfo> userInfo = service.selectOne(id);
+		try {
+			Optional<User> user = service.selectOne(id);
 			//userInfo.ifPresentOrElse(demoInfo -> errorInfo("null"), null);
-			model.addAttribute("userInfo", userInfo);
+			model.addAttribute("user", user);
 			return "crud/user";
+			} catch(IncorrectResultSizeDataAccessException e) {
+				String errorMessage = "対象のユーザーは存在しません。";
+				throw new NotFoundException(errorMessage);
+			}
 	}
 	
 	//		service.selectOne(id);
@@ -82,7 +91,7 @@ public class DemoController {
 //	}
 	//編集機能 
 	@PostMapping("/update")
-	public String seletOne(@RequestParam(value = "id", required = true)String id, @ModelAttribute DemoInfo update, Model model) {
+	public String seletOne(@RequestParam(value = "id", required = true)String id, @ModelAttribute User update, Model model) {
 		update.setId(id);
 		service.update(update);
 		model.addAttribute("update", update);
@@ -93,4 +102,5 @@ public class DemoController {
 //	service.update(demoInfo);
 //	return "/list";
 //	}
+	
 }

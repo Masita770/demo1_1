@@ -3,7 +3,7 @@ package com.example.domain;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-public class DemoInfo {
+public class User {
 	
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
@@ -11,7 +11,7 @@ public class DemoInfo {
 	private String age;
 	
 	
-	public DemoInfo(String id, String name, String age) {
+	public User(String id, String name, String age) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
