@@ -66,7 +66,7 @@ public class DemoController {
 	
 	//1 エラー発生箇所
 	@GetMapping("/user")
-	public String select(@RequestParam(value = "id", required = true)String id, Model model) {
+	public String select(@RequestParam(value = "id", required = true)String id, Model model) throws NotFoundException {
 		//if (result.hasErrors()) {
 		//String errorInfo = null;
 		try {
@@ -103,4 +103,12 @@ public class DemoController {
 //	return "/list";
 //	}
 	
+	@ExceptionHandler(DataAccessException.class)
+	public String dataAccesExceptionHandler(DataAccessException d, Model model) {
+		
+		model.addAttribute("error", "内部サーバーエラー　(DB) :ExceptionHandler");
+		model.addAttribute("message", "ControllerでDataAccessExceptionが発生");
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
+		return "error";
+	}
 }
