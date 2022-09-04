@@ -71,8 +71,9 @@ public class DemoController {
 		//String errorInfo = null;
 		try {
 			Optional<User> user = service.selectOne(id);
+		User a = user.get();
 			//userInfo.ifPresentOrElse(demoInfo -> errorInfo("null"), null);
-			model.addAttribute("user", user);
+			model.addAttribute("user", user.get());
 			return "crud/user";
 			} catch(IncorrectResultSizeDataAccessException e) {
 				String errorMessage = "対象のユーザーは存在しません。";
@@ -103,12 +104,4 @@ public class DemoController {
 //	return "/list";
 //	}
 	
-	@ExceptionHandler(DataAccessException.class)
-	public String dataAccesExceptionHandler(DataAccessException d, Model model) {
-		
-		model.addAttribute("error", "内部サーバーエラー　(DB) :ExceptionHandler");
-		model.addAttribute("message", "ControllerでDataAccessExceptionが発生");
-		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
-		return "error";
-	}
 }

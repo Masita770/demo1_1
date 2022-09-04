@@ -26,9 +26,9 @@ public class DemoService {
 	//*仮作成
 	
 	public Optional<User> selectOne(String id) {
-		Optional<Optional<User>> st = Optional.ofNullable(mapper.selectOne(id));
+		//Optional<Optional<User>> st = Optional.ofNullable(mapper.selectOne(id));
 		//DemoInfo result = st.orElse(new DemoInfo(id));
-		return st.get();
+		return mapper.selectOne(id);
 		}
 	
 	/*
