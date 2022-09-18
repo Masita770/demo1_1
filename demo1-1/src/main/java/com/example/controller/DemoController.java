@@ -53,7 +53,7 @@ public class DemoController {
 		return "crud/success";
 		}
 	service.create(user);
-	return "redirect:crud/list";
+	return "redirect:list";
 	}
 	
 	//ユーザー個別編集画面
@@ -65,21 +65,39 @@ public class DemoController {
 //	}
 	
 	//1 エラー発生箇所
-	@GetMapping("/user")
-	public String select(@RequestParam(value = "id", required = true)String id, Model model) throws NotFoundException {
+	@GetMapping("/user/{id}")
+	public String select(@PathVariable("id") String id, Model model) throws NotFoundException {
 		//if (result.hasErrors()) {
 		//String errorInfo = null;
-		try {
-			Optional<User> user = service.selectOne(id);
-		User a = user.get();
-			//userInfo.ifPresentOrElse(demoInfo -> errorInfo("null"), null);
-			model.addAttribute("user", user.get());
-			return "crud/user";
-			} catch(IncorrectResultSizeDataAccessException e) {
-				String errorMessage = "対象のユーザーは存在しません。";
-				throw new NotFoundException(errorMessage);
-			}
-	}
+		Optional<User> user = service.selectOne(id);
+		//User myUser = user;
+		user.ifPresentOrElse(inside -> {
+			model.addAttribute("user", inside);
+			return;
+		}, () -> {
+			System.out.println("値が存在しない");
+		});
+		return "crud/user";
+//		try {
+//			//値に数値が入っている場合
+//			model.addAttribute("user",user.get());
+//			return "crud/user";
+//			} catch (NullPointerException exception) {
+//			//NULLの場合の処理
+//			model.addAttribute("errMsg", exception);
+//			return "404";
+//			}
+		}
+		//user.ifPresentOrElse(NullController::NullError, () -> System.out.println("NULL"));
+		
+//			User myUser = user.get();
+//			model.addAttribute("user", myUser);
+//			return "crud/user";
+////			} (IncorrectResultSizeDataAccessException e) {
+////				String errorMessage = "対象のユーザーは存在しません。";
+////				throw new NotFoundException(errorMessage);
+//			}
+	
 	
 	//		service.selectOne(id);
 //		return "redirect:crud/user";
