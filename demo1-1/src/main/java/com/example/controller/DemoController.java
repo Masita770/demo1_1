@@ -56,16 +56,16 @@ public class DemoController {
 	return "redirect:list";
 	}
 	
-	//ユーザー個別編集画面
-//	@GetMapping("{id}/update")
-//	public String edit(@PathVariable String id, Model model) {
-//		DemoInfo demoInfo = service.updateSelect(id);
-//		model.addAttribute("demoInfo", demoInfo);
-//		return "crud/update";
-//	}
+	//更新画面表示
+	@GetMapping("/update/{id}")
+	public String updateSelect(@PathVariable("id") String id, Model model) {
+		Optional<User> user = service.updateSelect(id);
+		model.addAttribute("update", user);
+		return "crud/update";
+	}
 	
 	//1 エラー発生箇所
-	@GetMapping("/user/{id}")
+	@GetMapping("user/{id}")
 	public String select(@PathVariable("id") String id, Model model) throws NotFoundException {
 		//if (result.hasErrors()) {
 		//String errorInfo = null;
@@ -78,15 +78,6 @@ public class DemoController {
 			System.out.println("値が存在しない");
 		});
 		return "crud/user";
-//		try {
-//			//値に数値が入っている場合
-//			model.addAttribute("user",user.get());
-//			return "crud/user";
-//			} catch (NullPointerException exception) {
-//			//NULLの場合の処理
-//			model.addAttribute("errMsg", exception);
-//			return "404";
-//			}
 		}
 		//user.ifPresentOrElse(NullController::NullError, () -> System.out.println("NULL"));
 		
@@ -102,20 +93,19 @@ public class DemoController {
 	//		service.selectOne(id);
 //		return "redirect:crud/user";
 	//}
-//	@RequestMapping("/update")
-//	public String serch(@RequestParam(value = "id", required = true)String id, Model model) {
-//		Optional<DemoInfo> userUpdate = service.selectOne(id);
-//		model.addAttribute("demoUpdate", userUpdate);
-//		return "crud/update";
-//	}
+	@GetMapping("/{id}")
+	public String update(@PathVariable("id")String id, Model model) {
+		Optional<User> userUpdate = service.selectOne(id);
+		model.addAttribute("update", userUpdate);
+		return "crud/update";
+	}
 	//編集機能 
-	@PostMapping("/update")
-	public String seletOne(@RequestParam(value = "id", required = true)String id, @ModelAttribute User update, Model model) {
-		update.setId(id);
+	@PostMapping("/{id}")
+	public String seletOne(@PathVariable("id")String id, Model model) {
+		service.selectOne(id);
+		User update = null;
 		service.update(update);
 		model.addAttribute("update", update);
-		//service.create(demoInfo);
-		
 		return "redirect:crud/list";
 		}
 //	service.update(demoInfo);

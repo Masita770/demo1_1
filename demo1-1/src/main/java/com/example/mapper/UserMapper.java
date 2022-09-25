@@ -31,7 +31,8 @@ public interface UserMapper {
 	//void ifPresentOrElse(Object demoInfo);
 
 
-	Object DemoInfo();
+	Optional<User> updateSelect(String id);
+	//Object DemoInfo();
 
 
 	/**

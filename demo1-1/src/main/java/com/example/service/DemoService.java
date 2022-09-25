@@ -31,6 +31,10 @@ public class DemoService {
 		return mapper.selectOne(id);
 		}
 	
+	
+	public Optional<User> updateSelect(String id) {
+		return mapper.updateSelect(id);
+	}
 	/*
 	 * 編集機能
 	 */
