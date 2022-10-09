@@ -44,6 +44,6 @@ public interface UserMapper {
 
 
 	
-	Void update(User update);
+	void update(User update);
 
 }

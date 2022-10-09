@@ -11,19 +11,25 @@
 		<script th:href="@{/webjars/bootstrap/4.4.1-1/js/boostrap.min.js}"></script>
 		<div class="container">
 			<h1>update form</h1>
-			<form th:action="@{update}" th:method = "post">
+			<div th:object="${userUpdate}">
 				<div class="form-row mb-4">
 					<label class="control-label">名前</label>
-					<input class="form-control" id="firstName" type="text" th:field="*{name}">
+					<p class="form-control" th:text="*{name}"></p>
 				</div>
 				<div class="form-row mb-4">
 					<label class="control-label">年齢</label>
-					<input class="form-control" type="number" th:field="*{age}" />
+						<p class="form-control" th:text="*{age}"></p>
 				</div>
-				<button class="btn btn-outline-info btn-sm" type="submit">更新</button>
+				<div id="righttext">
+					<a class="btn btn-link" id="linktext" href="/crud/list">一覧画面</a>
+				</div>
+			</div>
+			<form th:action="@{update/{id}}" th:method="get" th:object="${update}">
+				<p>名前：<input class="form-control" type="text" th:field="*{name}" /></p>
+				<p>年齢：<input class="form-control" type="text" th:field="*{age}" /></p>
 			</form>
-			<div id="righttext">
-				<a class="btn btn-link" id="linktext" href="list">一覧画面</a>
+			<div>
+				<input type="submit" value="更新" class="btn btn-primary" href="crud/list" />
 			</div>
 		</div>
 	</body>

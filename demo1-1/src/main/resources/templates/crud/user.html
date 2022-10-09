@@ -22,11 +22,11 @@
 					<label class="control-label">年齢</label>
 					<p class="form-control" th:text="*{age}"></p>
 				</div>
-					<a class="btn btn-outline-success btn-sm" th:href="update">編集</a>
-				<div id ="righttext">
-					<a class="btn btn-link" id="linktext" href="list">一覧画面</a>
-				</div>
+					<a class="btn btn-outline-success btn-sm" th:href="@{/crud/update/{id}(id=*{id})}">編集</a>
+  　　			</div>
 			</div>
 		</div>
+		<div id="righttext">
+  					<a class="btn btn-link" id ="linktext" href="/crud/list">一覧画面</a>
 	</body>
 </html>

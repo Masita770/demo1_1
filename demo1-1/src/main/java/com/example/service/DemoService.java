@@ -39,7 +39,7 @@ public class DemoService {
 	 * 編集機能
 	 */
 	public void update(User update) {
-		mapper.update(update);
+		return;
 	}
 	
 }

@@ -47,9 +47,8 @@ public class DemoController {
 	@RequestMapping("form")
 	public String add(@ModelAttribute User user, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-//		List<DemoInfo> users = service.getDemoList();
-//		model.addAttribute("demoInfo", users);
-//		model.addAttribute("demoInfo", demoInfo);
+		List<User> users = service.getDemoList();
+		model.addAttribute("success", users);
 		return "crud/success";
 		}
 	service.create(user);
@@ -57,14 +56,14 @@ public class DemoController {
 	}
 	
 	//更新画面表示
-	@GetMapping("/update/{id}")
-	public String updateSelect(@PathVariable("id") String id, Model model) {
-		Optional<User> user = service.updateSelect(id);
-		model.addAttribute("update", user);
-		return "crud/update";
-	}
+//	@GetMapping("/update")
+//	public String updateSelect(@PathVariable("id") String id, Model model) {
+//		Optional<User> user = service.updateSelect(id);
+//		model.addAttribute("update", user);
+//		return "crud/update";
+//	}
 	
-	//1 エラー発生箇所
+	//個別参照
 	@GetMapping("user/{id}")
 	public String select(@PathVariable("id") String id, Model model) throws NotFoundException {
 		//if (result.hasErrors()) {
@@ -93,23 +92,27 @@ public class DemoController {
 	//		service.selectOne(id);
 //		return "redirect:crud/user";
 	//}
-	@GetMapping("/{id}")
+	@GetMapping("update/{id}")
 	public String update(@PathVariable("id")String id, Model model) {
 		Optional<User> userUpdate = service.selectOne(id);
-		model.addAttribute("update", userUpdate);
+		userUpdate.ifPresentOrElse(inside -> {
+			model.addAttribute("userUpdate", inside);
+			return;
+		}, () -> {
+			System.out.println("値が存在しない");
+		});
+		//model.addAttribute("update", userUpdate);
 		return "crud/update";
 	}
-	//編集機能 
-	@PostMapping("/{id}")
-	public String seletOne(@PathVariable("id")String id, Model model) {
-		service.selectOne(id);
-		User update = null;
+//	//編集機能 
+	@PostMapping("update/{id}")
+	public String selectOne(@PathVariable("id")String id, @ModelAttribute User update) {
+		//service.selectOne(id);
 		service.update(update);
-		model.addAttribute("update", update);
-		return "redirect:crud/list";
+		return "crud/list";
 		}
-//	service.update(demoInfo);
+//	service.update(user);
 //	return "/list";
-//	}
+	
 	
 }
