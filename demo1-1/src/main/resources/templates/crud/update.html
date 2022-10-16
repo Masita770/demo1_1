@@ -24,13 +24,11 @@
 					<a class="btn btn-link" id="linktext" href="/crud/list">一覧画面</a>
 				</div>
 			</div>
-			<form th:action="@{update/{id}}" th:method="get" th:object="${update}">
-				<p>名前：<input class="form-control" type="text" th:field="*{name}" /></p>
-				<p>年齢：<input class="form-control" type="text" th:field="*{age}" /></p>
+			<form th:action="@{/crud/edit/{id}(id=*{id})}" th:method="put" th:object="${userUpdate}">
+				<p>名前：<input type="text" th:field="*{name}" /></p>
+				<p>年齢：<input type="text" th:field="*{age}" /></p>
+				<input type="submit" value="更新" class="btn btn-primary" />
 			</form>
-			<div>
-				<input type="submit" value="更新" class="btn btn-primary" href="crud/list" />
-			</div>
 		</div>
 	</body>
 </html>

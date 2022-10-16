@@ -92,6 +92,7 @@ public class DemoController {
 	//		service.selectOne(id);
 //		return "redirect:crud/user";
 	//}
+	//編集対象指定
 	@GetMapping("update/{id}")
 	public String update(@PathVariable("id")String id, Model model) {
 		Optional<User> userUpdate = service.selectOne(id);
@@ -104,12 +105,12 @@ public class DemoController {
 		//model.addAttribute("update", userUpdate);
 		return "crud/update";
 	}
-//	//編集機能 
-	@PostMapping("update/{id}")
-	public String selectOne(@PathVariable("id")String id, @ModelAttribute User update) {
-		//service.selectOne(id);
-		service.update(update);
-		return "crud/list";
+//	//指定した箇所を編集実行 
+	@RequestMapping("/edit/{id}")
+	public String update(@PathVariable("id") String id, @ModelAttribute User user) {
+		user.setId(id);
+		service.update(user);
+		return "crud/edit";
 		}
 //	service.update(user);
 //	return "/list";
